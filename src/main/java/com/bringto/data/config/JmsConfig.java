@@ -21,7 +21,7 @@ public class JmsConfig {
 	private String user;
 	@Value("${spring.activemq.password}")
 	private String password;
-	
+
 	@Bean
 	public ActiveMQConnectionFactory connectionFactory() {
 		if ("".equals(user)) {
@@ -29,7 +29,7 @@ public class JmsConfig {
 		}
 		return new ActiveMQConnectionFactory(user, password, brokerUrl);
 	}
-	
+
 	@Bean
 	public JmsListenerContainerFactory<?> jmsFactoryTopic(ConnectionFactory connectionFactory,
 			DefaultJmsListenerContainerFactoryConfigurer configurer) {
@@ -38,12 +38,12 @@ public class JmsConfig {
 		factory.setPubSubDomain(true);
 		return factory;
 	}
-	
+
 	@Bean
 	public JmsTemplate jmsTemplate() {
 		return new JmsTemplate(connectionFactory());
 	}
-	
+
 	@Bean
 	public JmsTemplate jmsTemplateTopic() {
 		JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory());

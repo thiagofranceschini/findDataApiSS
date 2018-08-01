@@ -4,11 +4,8 @@ import java.io.Serializable;
 
 public class MqResult implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
+	private String id;
 	private String sistema;
 	private String horarioColeta;
 	private Integer status;
@@ -25,7 +22,8 @@ public class MqResult implements Serializable {
 	}
 
 	public MqResult(String[] string, Integer id) {
-		this.id = id;
+
+		this.id = id.toString() + string[1];
 		this.sistema = string[0];
 		this.horarioColeta = string[1];
 		if (null != string[2] && !"".equals(string[2]) && !"null".equals(string[2])) {
@@ -45,11 +43,11 @@ public class MqResult implements Serializable {
 
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -135,10 +133,10 @@ public class MqResult implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MqResult [id=" + id + ", sistema=" + sistema + ", horarioColeta=" + horarioColeta + ", status=" + status
-				+ ", statusDescription=" + statusDescription + ", conjuntoRobo=" + conjuntoRobo + ", stepFalha="
-				+ stepFalha + ", tipoFalha=" + tipoFalha + ", tipoFalhaDescription=" + tipoFalhaDescription
-				+ ", duracaoInspecao=" + duracaoInspecao + ", urlEvidencia=" + urlEvidencia + "]";
+		return "[id:" + id + ", sistema:" + sistema + ", horarioColeta:" + horarioColeta + ", status:" + status
+				+ ", statusDescription:" + statusDescription + ", conjuntoRobo:" + conjuntoRobo + ", stepFalha:"
+				+ stepFalha + ", tipoFalha:" + tipoFalha + ", tipoFalhaDescription:" + tipoFalhaDescription
+				+ ", duracaoInspecao:" + duracaoInspecao + ", urlEvidencia:" + urlEvidencia + "]";
 	}
 
 }
